@@ -23,8 +23,6 @@
             --border-color: #e9ecef;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
-            
-            /* Nuevas variables para el menú */
             --menu-item-bg: rgba(255, 255, 255, 0.05);
             --menu-item-hover-bg: rgba(255, 255, 255, 0.1);
             --menu-item-active-bg: linear-gradient(135deg, rgba(67, 97, 238, 0.15), rgba(247, 37, 133, 0.1));
@@ -50,8 +48,6 @@
             --sidebar-text: #ffffff;
             --border-color: #495057;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            
-            /* Ajustes para modo oscuro */
             --menu-item-bg: rgba(255, 255, 255, 0.08);
             --menu-item-hover-bg: rgba(255, 255, 255, 0.15);
             --menu-item-active-bg: linear-gradient(135deg, rgba(72, 149, 239, 0.2), rgba(247, 37, 133, 0.15));
@@ -72,7 +68,6 @@
             transition: var(--transition);
         }
 
-        /* Estilos para el login */
         .login-container {
             display: flex;
             justify-content: center;
@@ -125,7 +120,6 @@
             margin-top: 10px;
         }
 
-        /* Selector de idioma */
         .language-selector {
             position: fixed;
             bottom: 20px;
@@ -181,28 +175,32 @@
             background-color: var(--menu-item-hover-bg);
         }
 
-        /* Reloj mundial */
-        .world-clock {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+        .clock-container {
             margin-top: 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
         
         .clock-card {
             background-color: var(--card-bg);
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            text-align: center;
+            display: inline-block;
+            margin: 0;
+            min-width: 200px;
+            flex: 1;
         }
         
         .clock-city {
             font-size: 16px;
             font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         
         .clock-time {
@@ -211,17 +209,15 @@
         }
         
         .clock-date {
-            font-size: 12px;
+            font-size: 14px;
             opacity: 0.8;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
-        /* Clases utilitarias */
         .hidden {
             display: none;
         }
     
-        /* Sidebar - Estilos mejorados */
         .sidebar {
             width: 280px;
             background-color: var(--sidebar-bg);
@@ -292,77 +288,75 @@
             box-shadow: var(--menu-item-shadow);
             animation: fadeInLeft 0.4s ease forwards;
             cursor: pointer;
-            
-            /* Efecto de borde animado */
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 3px;
-                height: 100%;
-                background: var(--accent-color);
-                transform: scaleY(0);
-                transform-origin: bottom;
-                transition: transform 0.3s ease;
-            }
-            
-            i {
-                font-size: 18px;
-                width: 24px;
-                text-align: center;
-                margin-right: 15px;
-                color: var(--menu-icon-color);
-                transition: all 0.3s ease;
-                position: relative;
-                z-index: 1;
-            }
-            
-            span {
-                position: relative;
-                z-index: 1;
-                transition: transform 0.3s ease;
-            }
-            
-            &:hover {
-                color: var(--menu-item-active-text);
-                transform: translateX(5px);
-                background: var(--menu-item-hover-bg);
-                box-shadow: var(--menu-item-hover-shadow);
-                
-                i {
-                    color: var(--menu-icon-active-color);
-                    transform: scale(1.1);
-                }
-                
-                &::before {
-                    transform: scaleY(1);
-                }
-            }
-            
-            &.active {
-                background: var(--menu-item-active-bg);
-                color: var(--menu-item-active-text);
-                border-left: var(--menu-item-active-border);
-                font-weight: 600;
-                
-                i {
-                    color: var(--menu-icon-active-color);
-                }
-                
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    width: 3px;
-                    height: 100%;
-                    background: var(--accent-color);
-                }
-            }
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            margin-right: 15px;
+            color: var(--menu-icon-color);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .menu-item span {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            color: var(--menu-item-active-text);
+            transform: translateX(5px);
+            background: var(--menu-item-hover-bg);
+            box-shadow: var(--menu-item-hover-shadow);
+        }
+        
+        .menu-item:hover i {
+            color: var(--menu-icon-active-color);
+            transform: scale(1.1);
+        }
+        
+        .menu-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .menu-item.active {
+            background: var(--menu-item-active-bg);
+            color: var(--menu-item-active-text);
+            border-left: var(--menu-item-active-border);
+            font-weight: 600;
+        }
+        
+        .menu-item.active i {
+            color: var(--menu-icon-active-color);
+        }
+        
+        .menu-item.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-color);
         }
     
-        /* Animación al cargar */
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
@@ -382,7 +376,6 @@
         .menu-item:nth-child(6) { animation-delay: 0.6s; }
         .menu-item:nth-child(7) { animation-delay: 0.7s; }
     
-        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: 280px;
@@ -447,7 +440,6 @@
             font-size: 10px;
         }
     
-        /* Dashboard Cards */
         .dashboard-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -524,7 +516,6 @@
             color: var(--text-color);
         }
     
-        /* Section Content */
         .section-content {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -545,7 +536,6 @@
             gap: 10px;
         }
     
-        /* Forms */
         .form-group {
             margin-bottom: 20px;
         }
@@ -574,7 +564,6 @@
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
     
-        /* Buttons */
         .btn {
             padding: 12px 20px;
             border: none;
@@ -644,7 +633,6 @@
             background-color: rgba(67, 97, 238, 0.1);
         }
     
-        /* Tables */
         .table {
             width: 100%;
             border-collapse: collapse;
@@ -668,7 +656,6 @@
             background-color: rgba(67, 97, 238, 0.05);
         }
     
-        /* Status Badges */
         .status-badge {
             padding: 6px 12px;
             border-radius: 20px;
@@ -703,13 +690,11 @@
             transform: scale(1.2);
         }
     
-        /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 8px;
         }
     
-        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -772,149 +757,13 @@
             border-top: 1px solid var(--border-color);
         }
     
-        /* Responsive */
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 80px;
-                overflow: hidden;
-            }
-            .sidebar-header span {
-                display: none;
-            }
-            .menu-item span {
-                display: none;
-            }
-            .menu-item {
-                justify-content: center;
-                padding: 18px 0;
-                margin: 4px 0;
-                border-radius: 0;
-            }
-            .menu-item i {
-                margin-right: 0;
-                font-size: 20px;
-            }
-            .main-content {
-                margin-left: 80px;
-            }
-            .sidebar-header img {
-                max-width: 50px;
-            }
-            .theme-toggle span {
-                display: none;
-            }
-            
-            /* Ajustes para móvil del menú */
-            .menu-item:hover {
-                transform: none;
-                background: var(--menu-item-hover-bg);
-            }
-            
-            .menu-item.active {
-                border-left: none;
-                border-top: 3px solid var(--accent-color);
-                background: var(--menu-item-hover-bg);
-            }
-        }
-    
-        @media (max-width: 768px) {
-            .dashboard-cards {
-                grid-template-columns: 1fr 1fr;
-            }
-            .header h1 {
-                font-size: 22px;
-            }
-            .world-clock {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-    
-        @media (max-width: 576px) {
-            .dashboard-cards {
-                grid-template-columns: 1fr;
-            }
-            .main-content {
-                padding: 15px;
-            }
-            .section-content {
-                padding: 15px;
-            }
-            .action-buttons {
-                flex-direction: column;
-                gap: 5px;
-            }
-            .btn {
-                padding: 10px 15px;
-            }
-            .world-clock {
-                grid-template-columns: 1fr;
-            }
-            .login-box {
-                padding: 25px;
-            }
-        }
-    
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-    
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--success-color);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 3000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-    
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    
-        .toast.error {
-            background-color: var(--accent-color);
-        }
-    
-        /* Edit Modal */
-        .edit-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-    
-        .edit-form .form-group {
-            margin-bottom: 15px;
-        }
-    
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-    
-        /* Favorites Section */
         .favorites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-top: 20px;
         }
-    
+        
         .favorite-item {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -975,7 +824,6 @@
             font-size: 16px;
         }
     
-        /* Página independiente */
         .full-page {
             display: none;
             width: 100%;
@@ -988,37 +836,135 @@
             display: block;
         }
     
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+    
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    
+        .toast.error {
+            background-color: var(--accent-color);
+        }
+    
         @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                overflow: hidden;
+            }
+            .sidebar-header span {
+                display: none;
+            }
+            .menu-item span {
+                display: none;
+            }
+            .menu-item {
+                justify-content: center;
+                padding: 18px 0;
+                margin: 4px 0;
+                border-radius: 0;
+            }
+            .menu-item i {
+                margin-right: 0;
+                font-size: 20px;
+            }
+            .main-content {
+                margin-left: 80px;
+            }
+            .sidebar-header img {
+                max-width: 50px;
+            }
+            .theme-toggle span {
+                display: none;
+            }
+            
+            .menu-item:hover {
+                transform: none;
+                background: var(--menu-item-hover-bg);
+            }
+            
+            .menu-item.active {
+                border-left: none;
+                border-top: 3px solid var(--accent-color);
+                background: var(--menu-item-hover-bg);
+            }
+            
             .full-page {
                 margin-left: 80px;
             }
+            
+            .favorites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .clock-card {
+                min-width: 100%;
+            }
+            
+            .favorites-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        @media (max-width: 576px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+            .main-content {
+                padding: 15px;
+            }
+            .section-content {
+                padding: 15px;
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .btn {
+                padding: 10px 15px;
+            }
+            .login-box {
+                padding: 25px;
+            }
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
     </style>
 </head>
 <body>
-    <!-- Pantalla de Login -->
-    <div id="login-page" class="login-container">
-        <div class="login-box">
-            <img src="https://citam.net/wp-content/uploads/2020/11/citam.png" alt="CITAM Logo">
-            <h2 id="login-title">Iniciar Sesión</h2>
-            <form id="login-form" class="login-form">
-                <div class="form-group">
-                    <label for="username" id="username-label">Usuario</label>
-                    <input type="text" id="username" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="password" id="password-label">Contraseña</label>
-                    <input type="password" id="password" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary" id="login-btn">
-                    <i class="fas fa-sign-in-alt"></i> <span id="login-btn-text">Ingresar</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Aplicación principal (oculta inicialmente) -->
-    <div id="app-container" class="hidden">
+    <!-- Aplicación principal -->
+    <div id="app-container">
         <!-- Barra lateral de navegación -->
         <div class="sidebar">
             <div class="sidebar-header">
@@ -1060,8 +1006,6 @@
             </div>
         </div>
 
-        <!-- Páginas independientes -->
-        
         <!-- Dashboard -->
         <div id="dashboard-page" class="full-page active">
             <div class="header">
@@ -1148,11 +1092,42 @@
                 <h2 class="section-title"><i class="fas fa-chart-line"></i> <span id="summary-title">Resumen Reciente</span></h2>
                 <p id="welcome-message">Bienvenido al sistema de administración de CITAM. Aquí puedes gestionar inventario, envíos, clientes y proveedores.</p>
                 
-                <!-- Reloj Mundial -->
-                <div style="margin-top: 30px;">
-                    <h3 class="section-title"><i class="fas fa-globe"></i> <span id="world-clock-title">Reloj Mundial</span></h3>
-                    <div class="world-clock" id="world-clock">
-                        <!-- Los relojes se agregarán aquí dinámicamente -->
+                <!-- Relojes internacionales -->
+                <div class="clock-container">
+                    <div class="clock-card">
+                        <div class="clock-city">New York</div>
+                        <div class="clock-time" id="new-york-time">--:--:--</div>
+                        <div class="clock-date" id="new-york-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Madrid</div>
+                        <div class="clock-time" id="madrid-time">--:--:--</div>
+                        <div class="clock-date" id="madrid-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Beijing</div>
+                        <div class="clock-time" id="beijing-time">--:--:--</div>
+                        <div class="clock-date" id="beijing-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Argentina (Buenos Aires)</div>
+                        <div class="clock-time" id="argentina-time">--:--:--</div>
+                        <div class="clock-date" id="argentina-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Colombia (Bogotá)</div>
+                        <div class="clock-time" id="colombia-time">--:--:--</div>
+                        <div class="clock-date" id="colombia-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Dubai</div>
+                        <div class="clock-time" id="dubai-time">--:--:--</div>
+                        <div class="clock-date" id="dubai-date">--- --, ----</div>
+                    </div>
+                    <div class="clock-card">
+                        <div class="clock-city">Venezuela (Caracas)</div>
+                        <div class="clock-time" id="venezuela-time">--:--:--</div>
+                        <div class="clock-date" id="venezuela-date">--- --, ----</div>
                     </div>
                 </div>
                 
@@ -1268,9 +1243,9 @@
                     <div class="form-group">
                         <label for="shipment-status" id="shipment-status-label">Estado</label>
                         <select id="shipment-status" class="form-control" required>
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="En Tránsito">En Tránsito</option>
-                            <option value="Entregado">Entregado</option>
+                            <option value="pending">Pendiente</option>
+                            <option value="transit">En Tránsito</option>
+                            <option value="delivered">Entregado</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary" id="register-shipment-btn">
@@ -1320,6 +1295,10 @@
                         <label for="client-phone" id="client-phone-label">Teléfono</label>
                         <input type="tel" id="client-phone" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="client-country" id="client-country-label">País</label>
+                        <input type="text" id="client-country" class="form-control" required>
+                    </div>
                     <button type="submit" class="btn btn-primary" id="add-client-btn">
                         <i class="fas fa-save"></i> <span id="add-client-btn-text">Agregar Cliente</span>
                     </button>
@@ -1334,6 +1313,7 @@
                             <th id="client-name-header">Nombre</th>
                             <th id="client-email-header">Email</th>
                             <th id="client-phone-header">Teléfono</th>
+                            <th id="client-country-header">País</th>
                             <th id="client-actions-header">Acciones</th>
                         </tr>
                     </thead>
@@ -1365,6 +1345,10 @@
                         <label for="supplier-phone" id="supplier-phone-label">Teléfono</label>
                         <input type="tel" id="supplier-phone" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="supplier-country" id="supplier-country-label">País</label>
+                        <input type="text" id="supplier-country" class="form-control" required>
+                    </div>
                     <button type="submit" class="btn btn-primary" id="add-supplier-btn">
                         <i class="fas fa-save"></i> <span id="add-supplier-btn-text">Agregar Proveedor</span>
                     </button>
@@ -1379,6 +1363,7 @@
                             <th id="supplier-name-header">Nombre</th>
                             <th id="supplier-contact-header">Contacto</th>
                             <th id="supplier-phone-header">Teléfono</th>
+                            <th id="supplier-country-header">País</th>
                             <th id="supplier-actions-header">Acciones</th>
                         </tr>
                     </thead>
@@ -1458,6 +1443,7 @@
                                 <th id="report-client-name-header">Nombre</th>
                                 <th id="report-client-email-header">Email</th>
                                 <th id="report-client-phone-header">Teléfono</th>
+                                <th id="report-client-country-header">País</th>
                                 <th id="report-client-shipments-header">Envios</th>
                             </tr>
                         </thead>
@@ -1502,7 +1488,7 @@
                     <span>🇬🇧</span> English
                 </div>
                 <div class="language-option" data-lang="zh">
-                    <span>🇨🇳</span> 中文 (Chino)
+                    <span>🇨🇳</span> 中文 (Mandarín)
                 </div>
             </div>
         </div>
@@ -1532,17 +1518,17 @@
 
             if (!loadData('clients')) {
                 const defaultClients = [
-                    { id: 1, name: "Importadora ABC", email: "contacto@importadoraabc.com", phone: "555-123-4567" },
-                    { id: 2, name: "Exportadora XYZ", email: "ventas@exportadoraxyz.com", phone: "555-987-6543" },
-                    { id: 3, name: "Distribuidora 123", email: "info@distribuidora123.com", phone: "555-456-7890" }
+                    { id: 1, name: "Importadora ABC", email: "contacto@importadoraabc.com", phone: "555-123-4567", country: "México" },
+                    { id: 2, name: "Exportadora XYZ", email: "ventas@exportadoraxyz.com", phone: "555-987-6543", country: "Estados Unidos" },
+                    { id: 3, name: "Distribuidora 123", email: "info@distribuidora123.com", phone: "555-456-7890", country: "Colombia" }
                 ];
                 saveData('clients', defaultClients);
             }
 
             if (!loadData('suppliers')) {
                 const defaultSuppliers = [
-                    { id: 1, name: "Proveedor de Materiales S.A.", contact: "Juan Pérez", phone: "555-111-2222" },
-                    { id: 2, name: "Empaques Industriales", contact: "María Gómez", phone: "555-333-4444" }
+                    { id: 1, name: "Proveedor de Materiales S.A.", contact: "Juan Pérez", phone: "555-111-2222", country: "México" },
+                    { id: 2, name: "Empaques Industriales", contact: "María Gómez", phone: "555-333-4444", country: "China" }
                 ];
                 saveData('suppliers', defaultSuppliers);
             }
@@ -1555,7 +1541,7 @@
                         clientId: 1, 
                         destination: "Miami, USA", 
                         products: "CTN-001, BPL-002", 
-                        status: "Entregado" 
+                        status: "delivered" 
                     },
                     { 
                         id: 2, 
@@ -1563,7 +1549,7 @@
                         clientId: 2, 
                         destination: "Buenos Aires, Argentina", 
                         products: "CTP-003", 
-                        status: "En Tránsito" 
+                        status: "transit" 
                     },
                     { 
                         id: 3, 
@@ -1571,18 +1557,10 @@
                         clientId: 3, 
                         destination: "Ciudad de México, México", 
                         products: "CTN-001, CTP-003", 
-                        status: "Pendiente" 
+                        status: "pending" 
                     }
                 ];
                 saveData('shipments', defaultShipments);
-            }
-
-            if (!loadData('users')) {
-                const defaultUsers = [
-                    { username: "admin", password: "admin123", name: "Administrador" },
-                    { username: "user", password: "user123", name: "Usuario" }
-                ];
-                saveData('users', defaultUsers);
             }
         }
 
@@ -1608,10 +1586,6 @@
             return loadData('shipments') || [];
         }
 
-        function getUsers() {
-            return loadData('users') || [];
-        }
-
         function getFavorites() {
             const products = getProducts();
             return products.filter(product => product.favorite);
@@ -1622,10 +1596,10 @@
             es: {
                 login: {
                     title: "Iniciar Sesión",
-                    username: "Usuario",
+                    email: "Email",
                     password: "Contraseña",
                     button: "Ingresar",
-                    error: "Usuario o contraseña incorrectos",
+                    error: "Email o contraseña incorrectos",
                     welcome: "Bienvenido"
                 },
                 theme: {
@@ -1645,7 +1619,6 @@
                     title: "Dashboard",
                     welcome: "Bienvenido al sistema de administración de CITAM. Aquí puedes gestionar inventario, envíos, clientes y proveedores.",
                     summary: "Resumen Reciente",
-                    worldClock: "Reloj Mundial",
                     lastShipments: "Últimos Envíos",
                     lowStock: "Productos con Bajo Stock",
                     inventory: "Productos en Inventario",
@@ -1702,11 +1675,13 @@
                     name: "Nombre",
                     email: "Email",
                     phone: "Teléfono",
+                    country: "País",
                     addButton: "Agregar Cliente",
                     listTitle: "Listado de Clientes",
                     nameHeader: "Nombre",
                     emailHeader: "Email",
                     phoneHeader: "Teléfono",
+                    countryHeader: "País",
                     actionsHeader: "Acciones"
                 },
                 suppliers: {
@@ -1715,11 +1690,13 @@
                     name: "Nombre",
                     contact: "Contacto",
                     phone: "Teléfono",
+                    country: "País",
                     addButton: "Agregar Proveedor",
                     listTitle: "Listado de Proveedores",
                     nameHeader: "Nombre",
                     contactHeader: "Contacto",
                     phoneHeader: "Teléfono",
+                    countryHeader: "País",
                     actionsHeader: "Acciones"
                 },
                 reports: {
@@ -1740,6 +1717,7 @@
                     clientNameHeader: "Nombre",
                     clientEmailHeader: "Email",
                     clientPhoneHeader: "Teléfono",
+                    clientCountryHeader: "País",
                     clientShipmentsHeader: "Envíos"
                 },
                 modal: {
@@ -1763,27 +1741,15 @@
                     favoriteAdded: "Producto agregado a favoritos",
                     favoriteRemoved: "Producto removido de favoritos",
                     cannotDeleteClient: "No se puede eliminar, el cliente tiene envíos asociados"
-                },
-                worldClock: {
-                    newYork: "Nueva York",
-                    london: "Londres",
-                    tokyo: "Tokio",
-                    beijing: "Beijing",
-                    dubai: "Dubái",
-                    sydney: "Sídney",
-                    moscow: "Moscú",
-                    mexicoCity: "Ciudad de México",
-                    bogota: "Bogotá",
-                    buenosAires: "Buenos Aires"
                 }
             },
             en: {
                 login: {
                     title: "Login",
-                    username: "Username",
+                    email: "Email",
                     password: "Password",
                     button: "Sign In",
-                    error: "Invalid username or password",
+                    error: "Invalid email or password",
                     welcome: "Welcome"
                 },
                 theme: {
@@ -1803,7 +1769,6 @@
                     title: "Dashboard",
                     welcome: "Welcome to CITAM management system. Here you can manage inventory, shipments, clients and suppliers.",
                     summary: "Recent Summary",
-                    worldClock: "World Clock",
                     lastShipments: "Last Shipments",
                     lowStock: "Low Stock Products",
                     inventory: "Products in Inventory",
@@ -1860,11 +1825,13 @@
                     name: "Name",
                     email: "Email",
                     phone: "Phone",
+                    country: "Country",
                     addButton: "Add Client",
                     listTitle: "Clients List",
                     nameHeader: "Name",
                     emailHeader: "Email",
                     phoneHeader: "Phone",
+                    countryHeader: "Country",
                     actionsHeader: "Actions"
                 },
                 suppliers: {
@@ -1873,11 +1840,13 @@
                     name: "Name",
                     contact: "Contact",
                     phone: "Phone",
+                    country: "Country",
                     addButton: "Add Supplier",
                     listTitle: "Suppliers List",
                     nameHeader: "Name",
                     contactHeader: "Contact",
                     phoneHeader: "Phone",
+                    countryHeader: "Country",
                     actionsHeader: "Actions"
                 },
                 reports: {
@@ -1898,6 +1867,7 @@
                     clientNameHeader: "Name",
                     clientEmailHeader: "Email",
                     clientPhoneHeader: "Phone",
+                    clientCountryHeader: "Country",
                     clientShipmentsHeader: "Shipments"
                 },
                 modal: {
@@ -1921,27 +1891,15 @@
                     favoriteAdded: "Product added to favorites",
                     favoriteRemoved: "Product removed from favorites",
                     cannotDeleteClient: "Cannot delete, client has associated shipments"
-                },
-                worldClock: {
-                    newYork: "New York",
-                    london: "London",
-                    tokyo: "Tokyo",
-                    beijing: "Beijing",
-                    dubai: "Dubai",
-                    sydney: "Sydney",
-                    moscow: "Moscow",
-                    mexicoCity: "Mexico City",
-                    bogota: "Bogotá",
-                    buenosAires: "Buenos Aires"
                 }
             },
             zh: {
                 login: {
                     title: "登录",
-                    username: "用户名",
+                    email: "电子邮件",
                     password: "密码",
                     button: "登录",
-                    error: "用户名或密码错误",
+                    error: "电子邮件或密码不正确",
                     welcome: "欢迎"
                 },
                 theme: {
@@ -1961,12 +1919,11 @@
                     title: "仪表板",
                     welcome: "欢迎使用CITAM管理系统。在这里您可以管理库存、发货、客户和供应商。",
                     summary: "近期摘要",
-                    worldClock: "世界时钟",
                     lastShipments: "最近发货",
                     lowStock: "低库存产品",
                     inventory: "库存产品",
                     pending: "待处理发货",
-                    transit: "运输中的发货",
+                    transit: "运输中发货",
                     delivered: "已交付发货",
                     clients: "注册客户",
                     favorites: "收藏产品"
@@ -1990,7 +1947,7 @@
                     title: "收藏产品",
                     myFavorites: "我的收藏",
                     emptyState: "您还没有收藏产品",
-                    emptyStateSub: "从库存部分添加产品到收藏夹"
+                    emptyStateSub: "从库存部分添加产品到收藏"
                 },
                 shipments: {
                     title: "发货",
@@ -1998,7 +1955,7 @@
                     trackingNumber: "跟踪号码",
                     client: "客户",
                     destination: "目的地",
-                    products: "产品（逗号分隔）",
+                    products: "产品(逗号分隔)",
                     status: "状态",
                     registerButton: "注册发货",
                     listTitle: "发货列表",
@@ -2018,24 +1975,28 @@
                     name: "姓名",
                     email: "电子邮件",
                     phone: "电话",
+                    country: "国家",
                     addButton: "添加客户",
                     listTitle: "客户列表",
                     nameHeader: "姓名",
                     emailHeader: "电子邮件",
                     phoneHeader: "电话",
+                    countryHeader: "国家",
                     actionsHeader: "操作"
                 },
                 suppliers: {
                     title: "供应商",
                     addSupplier: "添加供应商",
-                    name: "姓名",
+                    name: "名称",
                     contact: "联系人",
                     phone: "电话",
+                    country: "国家",
                     addButton: "添加供应商",
                     listTitle: "供应商列表",
-                    nameHeader: "姓名",
+                    nameHeader: "名称",
                     contactHeader: "联系人",
                     phoneHeader: "电话",
+                    countryHeader: "国家",
                     actionsHeader: "操作"
                 },
                 reports: {
@@ -2056,6 +2017,7 @@
                     clientNameHeader: "姓名",
                     clientEmailHeader: "电子邮件",
                     clientPhoneHeader: "电话",
+                    clientCountryHeader: "国家",
                     clientShipmentsHeader: "发货"
                 },
                 modal: {
@@ -2076,21 +2038,9 @@
                     shipmentAdded: "发货注册成功",
                     shipmentUpdated: "发货更新成功",
                     shipmentDeleted: "发货删除成功",
-                    favoriteAdded: "产品添加到收藏夹",
-                    favoriteRemoved: "产品从收藏夹移除",
+                    favoriteAdded: "产品已添加到收藏",
+                    favoriteRemoved: "产品已从收藏中移除",
                     cannotDeleteClient: "无法删除，客户有相关发货"
-                },
-                worldClock: {
-                    newYork: "纽约",
-                    london: "伦敦",
-                    tokyo: "东京",
-                    beijing: "北京",
-                    dubai: "迪拜",
-                    sydney: "悉尼",
-                    moscow: "莫斯科",
-                    mexicoCity: "墨西哥城",
-                    bogota: "波哥大",
-                    buenosAires: "布宜诺斯艾利斯"
                 }
             }
         };
@@ -2102,14 +2052,6 @@
         // Función para aplicar traducciones
         function applyTranslations() {
             const lang = translations[currentLanguage];
-            
-            // Login
-            if (document.getElementById('login-title')) {
-                document.getElementById('login-title').textContent = lang.login.title;
-                document.getElementById('username-label').textContent = lang.login.username;
-                document.getElementById('password-label').textContent = lang.login.password;
-                document.getElementById('login-btn-text').textContent = lang.login.button;
-            }
             
             // Tema
             const themeToggleText = document.getElementById('theme-toggle-text');
@@ -2132,7 +2074,6 @@
             document.getElementById('dashboard-title').textContent = lang.dashboard.title;
             document.getElementById('welcome-message').textContent = lang.dashboard.welcome;
             document.getElementById('summary-title').textContent = lang.dashboard.summary;
-            document.getElementById('world-clock-title').textContent = lang.dashboard.worldClock;
             document.getElementById('last-shipments-title').textContent = lang.dashboard.lastShipments;
             document.getElementById('low-stock-title').textContent = lang.dashboard.lowStock;
             document.getElementById('inventory-card-title').textContent = lang.dashboard.inventory;
@@ -2184,11 +2125,13 @@
             document.getElementById('client-name-label').textContent = lang.clients.name;
             document.getElementById('client-email-label').textContent = lang.clients.email;
             document.getElementById('client-phone-label').textContent = lang.clients.phone;
+            document.getElementById('client-country-label').textContent = lang.clients.country;
             document.getElementById('add-client-btn-text').textContent = lang.clients.addButton;
             document.getElementById('client-list-title').textContent = lang.clients.listTitle;
             document.getElementById('client-name-header').textContent = lang.clients.nameHeader;
             document.getElementById('client-email-header').textContent = lang.clients.emailHeader;
             document.getElementById('client-phone-header').textContent = lang.clients.phoneHeader;
+            document.getElementById('client-country-header').textContent = lang.clients.countryHeader;
             document.getElementById('client-actions-header').textContent = lang.clients.actionsHeader;
             
             // Proveedores
@@ -2197,11 +2140,13 @@
             document.getElementById('supplier-name-label').textContent = lang.suppliers.name;
             document.getElementById('supplier-contact-label').textContent = lang.suppliers.contact;
             document.getElementById('supplier-phone-label').textContent = lang.suppliers.phone;
+            document.getElementById('supplier-country-label').textContent = lang.suppliers.country;
             document.getElementById('add-supplier-btn-text').textContent = lang.suppliers.addButton;
             document.getElementById('supplier-list-title').textContent = lang.suppliers.listTitle;
             document.getElementById('supplier-name-header').textContent = lang.suppliers.nameHeader;
             document.getElementById('supplier-contact-header').textContent = lang.suppliers.contactHeader;
             document.getElementById('supplier-phone-header').textContent = lang.suppliers.phoneHeader;
+            document.getElementById('supplier-country-header').textContent = lang.suppliers.countryHeader;
             document.getElementById('supplier-actions-header').textContent = lang.suppliers.actionsHeader;
             
             // Reportes
@@ -2225,6 +2170,7 @@
             document.getElementById('report-client-name-header').textContent = lang.reports.clientNameHeader;
             document.getElementById('report-client-email-header').textContent = lang.reports.clientEmailHeader;
             document.getElementById('report-client-phone-header').textContent = lang.reports.clientPhoneHeader;
+            document.getElementById('report-client-country-header').textContent = lang.reports.clientCountryHeader;
             document.getElementById('report-client-shipments-header').textContent = lang.reports.clientShipmentsHeader;
             
             // Modal
@@ -2233,48 +2179,12 @@
             document.getElementById('saveChanges').textContent = lang.modal.saveChanges;
         }
 
-        // Función para manejar el login
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Validar usuario
-            const users = getUsers();
-            const user = users.find(u => u.username === username && u.password === password);
-            
-            if (user) {
-                currentUser = user;
-                saveData('currentUser', user);
-                
-                // Ocultar login y mostrar aplicación
-                document.getElementById('login-page').style.display = 'none';
-                document.getElementById('app-container').style.display = 'flex';
-                
-                // Mostrar nombre de usuario en el avatar
-                const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
-                document.querySelector('.user-avatar').textContent = initials;
-                
-                showToast(`${translations[currentLanguage].login.welcome} ${user.name}`);
-                
-                // Inicializar la aplicación
-                initApp();
-                
-                // Redirigir al dashboard
-                navigateTo('dashboard');
-            } else {
-                showToast(translations[currentLanguage].login.error, true);
-            }
-        }
-
         // Función para cerrar sesión
         function logout() {
             if (confirm(currentLanguage === 'es' ? '¿Estás seguro de cerrar sesión?' : 
-                currentLanguage === 'en' ? 'Are you sure you want to logout?' : '您确定要退出吗？')) {
-                
+                        currentLanguage === 'en' ? 'Are you sure you want to logout?' : 
+                        '您确定要退出吗？')) {
                 currentUser = null;
-                localStorage.removeItem('currentUser');
                 
                 // Ocultar aplicación y mostrar login
                 document.getElementById('app-container').classList.add('hidden');
@@ -2293,100 +2203,91 @@
             
             // Cerrar el selector de idioma
             document.getElementById('language-options').classList.remove('show');
-            
-            // Actualizar el reloj mundial
-            updateWorldClock();
         }
 
-        // Función para actualizar el reloj mundial
-        function updateWorldClock() {
-            const timeZones = [
-                { city: translations[currentLanguage].worldClock.newYork, timeZone: 'America/New_York' },
-                { city: translations[currentLanguage].worldClock.london, timeZone: 'Europe/London' },
-                { city: translations[currentLanguage].worldClock.tokyo, timeZone: 'Asia/Tokyo' },
-                { city: translations[currentLanguage].worldClock.beijing, timeZone: 'Asia/Shanghai' },
-                { city: translations[currentLanguage].worldClock.dubai, timeZone: 'Asia/Dubai' },
-                { city: translations[currentLanguage].worldClock.sydney, timeZone: 'Australia/Sydney' },
-                { city: translations[currentLanguage].worldClock.moscow, timeZone: 'Europe/Moscow' },
-                { city: translations[currentLanguage].worldClock.mexicoCity, timeZone: 'America/Mexico_City' },
-                { city: translations[currentLanguage].worldClock.bogota, timeZone: 'America/Bogota' },
-                { city: translations[currentLanguage].worldClock.buenosAires, timeZone: 'America/Argentina/Buenos_Aires' }
+        // Función para actualizar los relojes internacionales
+        function updateInternationalClocks() {
+            const cities = [
+                { id: 'new-york', timeZone: 'America/New_York', name: 'New York' },
+                { id: 'madrid', timeZone: 'Europe/Madrid', name: 'Madrid' },
+                { id: 'beijing', timeZone: 'Asia/Shanghai', name: 'Beijing' },
+                { id: 'argentina', timeZone: 'America/Argentina/Buenos_Aires', name: 'Argentina (Buenos Aires)' },
+                { id: 'colombia', timeZone: 'America/Bogota', name: 'Colombia (Bogotá)' },
+                { id: 'dubai', timeZone: 'Asia/Dubai', name: 'Dubai' },
+                { id: 'venezuela', timeZone: 'America/Caracas', name: 'Venezuela (Caracas)' }
             ];
             
-            const worldClockContainer = document.getElementById('world-clock');
-            worldClockContainer.innerHTML = '';
-            
-            timeZones.forEach(tz => {
-                const now = new Date();
+            cities.forEach(city => {
                 const options = {
-                    timeZone: tz.timeZone,
+                    timeZone: city.timeZone,
                     hour: '2-digit',
                     minute: '2-digit',
                     second: '2-digit',
                     hour12: false
                 };
                 
-                const timeStr = now.toLocaleTimeString(currentLanguage === 'zh' ? 'zh-CN' : currentLanguage, options);
-                
                 const dateOptions = {
-                    timeZone: tz.timeZone,
-                    weekday: 'short',
+                    timeZone: city.timeZone,
+                    weekday: 'long',
                     year: 'numeric',
-                    month: 'short',
+                    month: 'long',
                     day: 'numeric'
                 };
                 
-                const dateStr = now.toLocaleDateString(currentLanguage === 'zh' ? 'zh-CN' : currentLanguage, dateOptions);
+                const now = new Date();
+                let timeStr, dateStr;
                 
-                const clockCard = document.createElement('div');
-                clockCard.className = 'clock-card';
-                clockCard.innerHTML = `
-                    <div class="clock-city">${tz.city}</div>
-                    <div class="clock-time">${timeStr}</div>
-                    <div class="clock-date">${dateStr}</div>
-                `;
+                if (currentLanguage === 'es') {
+                    timeStr = now.toLocaleTimeString('es-ES', options);
+                    dateStr = now.toLocaleDateString('es-ES', dateOptions);
+                } else if (currentLanguage === 'zh') {
+                    timeStr = now.toLocaleTimeString('zh-CN', options);
+                    dateStr = now.toLocaleDateString('zh-CN', dateOptions);
+                } else {
+                    timeStr = now.toLocaleTimeString('en-US', options);
+                    dateStr = now.toLocaleDateString('en-US', dateOptions);
+                }
                 
-                worldClockContainer.appendChild(clockCard);
+                document.getElementById(`${city.id}-time`).textContent = timeStr;
+                document.getElementById(`${city.id}-date`).textContent = dateStr;
             });
         }
 
-        // Función para iniciar el reloj mundial
-        function startWorldClock() {
-            updateWorldClock();
-            setInterval(updateWorldClock, 1000);
+        // Iniciar los relojes internacionales
+        function startInternationalClocks() {
+            updateInternationalClocks();
+            setInterval(updateInternationalClocks, 1000);
         }
 
         // Verificar si hay un usuario logueado al cargar
         function checkAuth() {
-            const savedUser = loadData('currentUser');
             const savedLang = loadData('language') || 'es';
-            
-            if (savedUser) {
-                currentUser = savedUser;
-                document.getElementById('login-page').style.display = 'none';
-                document.getElementById('app-container').style.display = 'flex';
-                
-                // Mostrar nombre de usuario en el avatar
-                const initials = savedUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
-                document.querySelector('.user-avatar').textContent = initials;
-                
-                // Inicializar la aplicación
-                initApp();
-            } else {
-                document.getElementById('login-page').style.display = 'flex';
-                document.getElementById('app-container').style.display = 'none';
-            }
             
             // Configurar idioma
             changeLanguage(savedLang);
+            
+            // Mostrar la aplicación directamente sin login
+            document.getElementById('app-container').style.display = 'flex';
+            
+            // Inicializar la aplicación
+            initApp();
         }
 
-        // Inicializar la aplicación cuando el DOM esté listo - VERSIÓN CORREGIDA
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeData(); // Asegurarse de que los datos iniciales estén creados
+        // Inicializar la aplicación
+        function initApp() {
+            initializeData();
             setupEventListeners();
-            checkAuth();
-        });
+            applyTranslations();
+            renderDashboard();
+            renderInventoryList();
+            renderClientsList();
+            renderSuppliersList();
+            renderShipmentsList();
+            renderFavoritesList();
+            populateClientDropdown();
+            startInternationalClocks();
+            checkThemePreference();
+        }
 
         // Configurar event listeners
         function setupEventListeners() {
@@ -2426,9 +2327,6 @@
                     navigateTo(section);
                 });
             });
-
-            // Configurar eventos de login
-            document.getElementById('login-form').addEventListener('submit', handleLogin);
             
             // Configurar selector de idioma
             document.getElementById('language-btn').addEventListener('click', function() {
@@ -2443,17 +2341,6 @@
             
             // Configurar avatar de usuario para cerrar sesión
             document.querySelector('.user-avatar').addEventListener('click', logout);
-        }
-
-        // Manejar el enrutamiento
-        function handleRouting() {
-            window.addEventListener('popstate', function() {
-                const hash = window.location.hash.substring(1) || 'dashboard';
-                showPage(hash);
-            });
-
-            const initialHash = window.location.hash.substring(1) || 'dashboard';
-            showPage(initialHash);
         }
 
         // Navegar a una página específica
@@ -2513,9 +2400,9 @@
             document.getElementById('clients-count').textContent = clients.length;
             document.getElementById('favorites-count').textContent = favorites.length;
             
-            const pendingCount = shipments.filter(s => s.status === 'Pendiente' || s.status === 'Pending' || s.status === '待处理').length;
-            const transitCount = shipments.filter(s => s.status === 'En Tránsito' || s.status === 'In Transit' || s.status === '运输中').length;
-            const deliveredCount = shipments.filter(s => s.status === 'Entregado' || s.status === 'Delivered' || s.status === '已交付').length;
+            const pendingCount = shipments.filter(s => s.status === 'pending').length;
+            const transitCount = shipments.filter(s => s.status === 'transit').length;
+            const deliveredCount = shipments.filter(s => s.status === 'delivered').length;
             
             document.getElementById('pending-count').textContent = pendingCount;
             document.getElementById('transit-count').textContent = transitCount;
@@ -2528,19 +2415,18 @@
             
             recentShipments.forEach(shipment => {
                 const client = clients.find(c => c.id === shipment.clientId);
-                const clientName = client ? client.name : currentLanguage === 'es' ? 'Cliente desconocido' : 
-                                          currentLanguage === 'en' ? 'Unknown client' : '未知客户';
+                const clientName = client ? client.name : translations[currentLanguage].shipments.client;
                 
                 let statusClass = '';
-                let statusText = shipment.status;
+                let statusText = '';
                 
-                if (shipment.status === 'Pendiente' || shipment.status === 'Pending' || shipment.status === '待处理') {
+                if (shipment.status === 'pending') {
                     statusClass = 'status-pending';
                     statusText = translations[currentLanguage].shipments.pending;
-                } else if (shipment.status === 'En Tránsito' || shipment.status === 'In Transit' || shipment.status === '运输中') {
+                } else if (shipment.status === 'transit') {
                     statusClass = 'status-transit';
                     statusText = translations[currentLanguage].shipments.transit;
-                } else if (shipment.status === 'Entregado' || shipment.status === 'Delivered' || shipment.status === '已交付') {
+                } else if (shipment.status === 'delivered') {
                     statusClass = 'status-delivered';
                     statusText = translations[currentLanguage].shipments.delivered;
                 }
@@ -2689,7 +2575,7 @@
                     <h3>${product.name}</h3>
                     <p><strong>${translations[currentLanguage].inventory.code}:</strong> ${product.code}</p>
                     <p><strong>${translations[currentLanguage].inventory.quantity}:</strong> ${product.quantity}</p>
-                    <p style="margin-top: 10px; font-size: 13px;">${product.description || (currentLanguage === 'es' ? 'Sin descripción' : currentLanguage === 'en' ? 'No description' : '没有描述')}</p>
+                    <p style="margin-top: 10px; font-size: 13px;">${product.description || translations[currentLanguage].inventory.description}</p>
                 `;
                 container.appendChild(item);
             });
@@ -2702,13 +2588,15 @@
             const name = document.getElementById('client-name').value;
             const email = document.getElementById('client-email').value;
             const phone = document.getElementById('client-phone').value;
+            const country = document.getElementById('client-country').value;
             
             const clients = getClients();
             const newClient = {
                 id: getNextId(clients),
                 name,
                 email,
-                phone
+                phone,
+                country
             };
             
             clients.push(newClient);
@@ -2734,6 +2622,7 @@
                     <td>${client.name}</td>
                     <td>${client.email}</td>
                     <td>${client.phone}</td>
+                    <td>${client.country}</td>
                     <td class="action-buttons">
                         <button class="btn btn-primary btn-sm" onclick="editItem('client', ${client.id})">
                             <i class="fas fa-edit"></i> ${translations[currentLanguage].modal.editItem}
@@ -2754,13 +2643,15 @@
             const name = document.getElementById('supplier-name').value;
             const contact = document.getElementById('supplier-contact').value;
             const phone = document.getElementById('supplier-phone').value;
+            const country = document.getElementById('supplier-country').value;
             
             const suppliers = getSuppliers();
             const newSupplier = {
                 id: getNextId(suppliers),
                 name,
                 contact,
-                phone
+                phone,
+                country
             };
             
             suppliers.push(newSupplier);
@@ -2784,6 +2675,7 @@
                     <td>${supplier.name}</td>
                     <td>${supplier.contact}</td>
                     <td>${supplier.phone}</td>
+                    <td>${supplier.country}</td>
                     <td class="action-buttons">
                         <button class="btn btn-primary btn-sm" onclick="editItem('supplier', ${supplier.id})">
                             <i class="fas fa-edit"></i> ${translations[currentLanguage].modal.editItem}
@@ -2814,7 +2706,7 @@
                 clientId,
                 destination,
                 products: productsList,
-                status: translations[currentLanguage].shipments[status.toLowerCase().replace(' ', '')]
+                status: status // Guardamos el valor del estado directamente (pending, transit, delivered)
             };
             
             shipments.push(newShipment);
@@ -2836,18 +2728,20 @@
             
             shipments.forEach(shipment => {
                 const client = clients.find(c => c.id === shipment.clientId);
-                const clientName = client ? client.name : currentLanguage === 'es' ? 'Cliente desconocido' : 
-                                          currentLanguage === 'en' ? 'Unknown client' : '未知客户';
+                const clientName = client ? client.name : translations[currentLanguage].shipments.client;
                 
                 let statusClass = '';
-                let statusText = shipment.status;
+                let statusText = '';
                 
-                if (shipment.status === translations[currentLanguage].shipments.pending) {
+                if (shipment.status === 'pending') {
                     statusClass = 'status-pending';
-                } else if (shipment.status === translations[currentLanguage].shipments.transit) {
+                    statusText = translations[currentLanguage].shipments.pending;
+                } else if (shipment.status === 'transit') {
                     statusClass = 'status-transit';
-                } else if (shipment.status === translations[currentLanguage].shipments.delivered) {
+                    statusText = translations[currentLanguage].shipments.transit;
+                } else if (shipment.status === 'delivered') {
                     statusClass = 'status-delivered';
+                    statusText = translations[currentLanguage].shipments.delivered;
                 }
                 
                 const tr = document.createElement('tr');
@@ -2933,6 +2827,10 @@
                                 <label for="edit-phone">${translations[currentLanguage].clients.phone}</label>
                                 <input type="tel" id="edit-phone" class="form-control" value="${item.phone}" required>
                             </div>
+                            <div class="form-group">
+                                <label for="edit-country">${translations[currentLanguage].clients.country}</label>
+                                <input type="text" id="edit-country" class="form-control" value="${item.country}" required>
+                            </div>
                         </div>
                     `;
                     break;
@@ -2955,6 +2853,10 @@
                                 <label for="edit-phone">${translations[currentLanguage].suppliers.phone}</label>
                                 <input type="tel" id="edit-phone" class="form-control" value="${item.phone}" required>
                             </div>
+                            <div class="form-group">
+                                <label for="edit-country">${translations[currentLanguage].suppliers.country}</label>
+                                <input type="text" id="edit-country" class="form-control" value="${item.country}" required>
+                            </div>
                         </div>
                     `;
                     break;
@@ -2969,6 +2871,13 @@
                     allClients.forEach(client => {
                         const selected = client.id === item.clientId ? 'selected' : '';
                         clientOptions += `<option value="${client.id}" ${selected}>${client.name}</option>`;
+                    });
+                    
+                    let statusOptions = '';
+                    const statusValues = ['pending', 'transit', 'delivered'];
+                    statusValues.forEach(status => {
+                        const selected = item.status === status ? 'selected' : '';
+                        statusOptions += `<option value="${status}" ${selected}>${translations[currentLanguage].shipments[status]}</option>`;
                     });
                     
                     formHtml = `
@@ -2995,9 +2904,7 @@
                             <div class="form-group">
                                 <label for="edit-status">${translations[currentLanguage].shipments.status}</label>
                                 <select id="edit-status" class="form-control" required>
-                                    <option value="${translations[currentLanguage].shipments.pending}" ${item.status === translations[currentLanguage].shipments.pending ? 'selected' : ''}>${translations[currentLanguage].shipments.pending}</option>
-                                    <option value="${translations[currentLanguage].shipments.transit}" ${item.status === translations[currentLanguage].shipments.transit ? 'selected' : ''}>${translations[currentLanguage].shipments.transit}</option>
-                                    <option value="${translations[currentLanguage].shipments.delivered}" ${item.status === translations[currentLanguage].shipments.delivered ? 'selected' : ''}>${translations[currentLanguage].shipments.delivered}</option>
+                                    ${statusOptions}
                                 </select>
                             </div>
                         </div>
@@ -3052,7 +2959,8 @@
                             ...clients[clientIndex],
                             name: document.getElementById('edit-name').value,
                             email: document.getElementById('edit-email').value,
-                            phone: document.getElementById('edit-phone').value
+                            phone: document.getElementById('edit-phone').value,
+                            country: document.getElementById('edit-country').value
                         };
                         
                         saveData('clients', clients);
@@ -3072,7 +2980,8 @@
                             ...suppliers[supplierIndex],
                             name: document.getElementById('edit-name').value,
                             contact: document.getElementById('edit-contact').value,
-                            phone: document.getElementById('edit-phone').value
+                            phone: document.getElementById('edit-phone').value,
+                            country: document.getElementById('edit-country').value
                         };
                         
                         saveData('suppliers', suppliers);
@@ -3108,8 +3017,10 @@
 
         // Eliminar elemento
         function deleteItem(type, id) {
-            if (!confirm(currentLanguage === 'es' ? '¿Estás seguro de eliminar este elemento?' : 
-                         currentLanguage === 'en' ? 'Are you sure you want to delete this item?' : '您确定要删除此项吗？')) return;
+            if (!confirm(
+                currentLanguage === 'es' ? '¿Estás seguro de eliminar este elemento?' : 
+                currentLanguage === 'en' ? 'Are you sure you want to delete this item?' : 
+                '您确定要删除此项目吗？')) return;
             
             switch (type) {
                 case 'product':
@@ -3201,8 +3112,16 @@
             
             shipments.forEach(shipment => {
                 const client = clients.find(c => c.id === shipment.clientId);
-                const clientName = client ? client.name : currentLanguage === 'es' ? 'Cliente desconocido' : 
-                                          currentLanguage === 'en' ? 'Unknown client' : '未知客户';
+                const clientName = client ? client.name : translations[currentLanguage].shipments.client;
+                
+                let statusText = '';
+                if (shipment.status === 'pending') {
+                    statusText = translations[currentLanguage].shipments.pending;
+                } else if (shipment.status === 'transit') {
+                    statusText = translations[currentLanguage].shipments.transit;
+                } else if (shipment.status === 'delivered') {
+                    statusText = translations[currentLanguage].shipments.delivered;
+                }
                 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -3210,7 +3129,7 @@
                     <td>${clientName}</td>
                     <td>${shipment.destination}</td>
                     <td>${shipment.products}</td>
-                    <td>${shipment.status}</td>
+                    <td>${statusText}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -3237,6 +3156,7 @@
                     <td>${client.name}</td>
                     <td>${client.email}</td>
                     <td>${client.phone}</td>
+                    <td>${client.country}</td>
                     <td>${clientShipments.length}</td>
                 `;
                 tbody.appendChild(tr);
@@ -3283,15 +3203,8 @@
 
         // Inicializar la aplicación cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
+            initializeData();
             checkAuth();
-            
-            // Configurar evento de logout
-            document.querySelector('.user-avatar').addEventListener('click', logout);
-            
-            // Si hay usuario autenticado, inicializar la aplicación
-            if (currentUser) {
-                initApp();
-            }
         });
 
         // Hacer las funciones accesibles globalmente para los eventos onclick
